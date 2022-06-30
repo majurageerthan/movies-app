@@ -1,11 +1,13 @@
 import axios from 'axios';
+import { API_MOVIES_URL } from '../../shared/constants';
+import { API_KEY } from '../../shared/env';
 
 export const getMoviesList = async (pageNo = 1) => {
   const config = {
     method: 'get',
-    url: 'https://api.themoviedb.org/3/movie/top_rated',
+    url: API_MOVIES_URL,
     params: {
-      api_key: '9618b5cf6ae9661f92fff553c697bed4',
+      api_key: API_KEY,
       page: pageNo,
     },
     headers: { },
@@ -13,7 +15,6 @@ export const getMoviesList = async (pageNo = 1) => {
 
   try {
     console.log('config', config);
-
     const response = await axios(config);
     const { data } = response;
     console.log(JSON.stringify(data));
@@ -21,9 +22,9 @@ export const getMoviesList = async (pageNo = 1) => {
   } catch (error) {
     console.log(error);
     if (error.response) {
-      console.log(error.response.data);
-      console.log(error.response.status);
-      console.log(error.response.headers);
+      console.error(error.response.data);
+      console.error(error.response.status);
+      console.error(error.response.headers);
     }
     return [];
   }

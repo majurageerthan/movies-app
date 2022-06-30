@@ -30,5 +30,6 @@ module.exports = {
     'react-native/no-color-literals': 'off',
     'react/require-default-props': 'off',
     'import/prefer-default-export': 'off',
+    'react/prop-types': 'off',
   },
 };

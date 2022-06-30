@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { View, ActivityIndicator, Text } from 'react-native';
-import PropTypes from 'prop-types';
 import { useNetInfo } from '@react-native-community/netinfo';
 import styles from './styles';
 import HomeTemplate from '../../templates/home';
@@ -48,18 +47,10 @@ const HomePage = () => {
   const netInfo = useNetInfo();
 
   return (
-    <View style={{ flex: 1 }}>
+    <View style={styles.container}>
       {!netInfo.isConnected && (
-      <View style={{ backgroundColor: 'red' }}>
-        <Text style={{
-          textAlign: 'center',
-          fontWeight: 'bold',
-          fontSize: 18,
-          marginTop: 0,
-          width: 200,
-          width: '100%',
-        }}
-        >
+      <View style={styles.noInternetContainer}>
+        <Text style={styles.noIntText}>
           No Internet Connection
         </Text>
       </View>
@@ -72,27 +63,12 @@ const HomePage = () => {
         isPullToRefreshing={isPullToRefreshing}
       />
       {loading && (
-      <View style={{
-        position: 'absolute',
-        left: 0,
-        right: 0,
-        top: 0,
-        bottom: 0,
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: '#F5FCFF88',
-      }}
-      >
+      <View style={styles.activityIndicator}>
         <ActivityIndicator size="large" />
       </View>
       )}
     </View>
   );
-};
-
-HomePage.propTypes = {
-  title: PropTypes.string,
-  movies: PropTypes.arrayOf(PropTypes.string),
 };
 
 export default HomePage;

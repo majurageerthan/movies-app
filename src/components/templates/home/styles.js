@@ -15,5 +15,8 @@ export default StyleSheet.create({
   title: {
     fontSize: 32,
   },
+  listFooterComponent: {
+    height: 20,
+  },
 
 });

@@ -1,8 +1,5 @@
 import React from 'react';
-import {
-  Text, View, TextInput, Image,
-  SafeAreaView, FlatList, StyleSheet, StatusBar,
-} from 'react-native';
+import { View, SafeAreaView, FlatList } from 'react-native';
 import styles from './styles';
 import MovieTile from '../../organisms/movieTile';
 
@@ -14,11 +11,11 @@ const HomeTemplate = ({
     <FlatList
       data={movies}
       keyExtractor={(item) => item.id}
-      ListFooterComponent={<View style={{ height: 20 }} />}
+      ListFooterComponent={<View style={styles.listFooterComponent} />}
       onEndReached={increasePageNo}
       onRefresh={() => onPullToRefresh()}
       refreshing={isPullToRefreshing}
-      renderItem={({ item, index, separators }) => (
+      renderItem={({ item, index }) => (
         <MovieTile
           movie={item}
           index={index}
