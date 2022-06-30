@@ -13,7 +13,8 @@ export default StyleSheet.create({
   },
   wrapper: {
     padding: 10,
-    backgroundColor: '#FFFFFF',
+    elevation: 5,
+    maxHeight: '10%',
   },
   inputLabels: {
     fontSize: 16,
@@ -46,7 +47,11 @@ export default StyleSheet.create({
     padding: 8,
     flexDirection: 'row',
     alignItems: 'center',
-
+  },
+  titleText: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: 'black',
   },
 
 });

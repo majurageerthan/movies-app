@@ -73,7 +73,7 @@ const App: () => Node = () => {
       options={{
         title: 'Top Rated Movies',
         headerStyle: {
-          backgroundColor: '#f4511e',
+          backgroundColor: '#00008B',
         },
         headerTintColor: '#fff',
         headerTitleStyle: {
