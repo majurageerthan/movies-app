@@ -25,7 +25,7 @@ const App = () => (
         options={{
           title: 'Top Rated Movies',
           headerStyle: {
-            backgroundColor: '#00008B',
+            backgroundColor: '#032541',
           },
           headerTintColor: '#fff',
           headerTitleStyle: {
