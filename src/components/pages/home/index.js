@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { View, ActivityIndicator } from 'react-native';
+import { View, ActivityIndicator, Text } from 'react-native';
 import PropTypes from 'prop-types';
+import { useNetInfo } from '@react-native-community/netinfo';
 import styles from './styles';
 import HomeTemplate from '../../templates/home';
 import { getMoviesList } from '../../../services/api/moviesApi';
@@ -44,8 +45,26 @@ const HomePage = () => {
     setPageNo(pageNo + 1);
   };
 
+  const netInfo = useNetInfo();
+
   return (
     <View style={{ flex: 1 }}>
+      {!netInfo.isConnected && (
+      <View style={{ backgroundColor: 'red' }}>
+        <Text style={{
+          textAlign: 'center',
+          fontWeight: 'bold',
+          fontSize: 18,
+          marginTop: 0,
+          width: 200,
+          width: '100%',
+        }}
+        >
+          No Internet Connection
+        </Text>
+      </View>
+      )}
+
       <HomeTemplate
         movies={movies}
         increasePageNo={increasePageNo}

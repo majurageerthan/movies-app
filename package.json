@@ -11,6 +11,7 @@
     "cleanAndroid": "cd android && ./gradlew clean && cd ../"
   },
   "dependencies": {
+    "@react-native-community/netinfo": "^9.3.0",
     "@react-navigation/native": "^6.0.10",
     "@react-navigation/native-stack": "^6.6.2",
     "axios": "^0.27.2",
