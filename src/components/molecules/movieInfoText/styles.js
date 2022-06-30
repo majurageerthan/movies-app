@@ -23,6 +23,7 @@ export default StyleSheet.create({
   subTitleText: {
     fontSize: 14,
     fontWeight: 'bold',
+    color: '#808080',
   },
 
   ratingContainer: {
@@ -34,9 +35,15 @@ export default StyleSheet.create({
 
   ratingText: {
     fontSize: 12,
+    color: '#808080',
+
   },
   languageText: {
     paddingRight: 1,
+    color: '#808080',
+  },
+  overviewText: {
+    color: '#808080',
   },
 
 });

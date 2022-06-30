@@ -14,7 +14,7 @@ const MovieInfoText = ({ movie, index }) => (
     </Text>
 
     <View style={styles.textContainer}>
-      <Text>{movie?.release_date}</Text>
+      <Text style={styles.overviewText}>{movie?.release_date}</Text>
       <Text style={styles.languageText}>
         {` (${movie?.original_language}) . `}
       </Text>
@@ -26,7 +26,7 @@ const MovieInfoText = ({ movie, index }) => (
       </View>
     </View>
 
-    <Text numberOfLines={4}>{movie?.overview}</Text>
+    <Text style={styles.overviewText} numberOfLines={4}>{movie?.overview}</Text>
 
   </View>
 );
