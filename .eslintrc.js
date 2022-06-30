@@ -29,5 +29,6 @@ module.exports = {
     'react/function-component-definition': [2, { namedComponents: 'arrow-function' }],
     'react-native/no-color-literals': 'off',
     'react/require-default-props': 'off',
+    'import/prefer-default-export': 'off',
   },
 };

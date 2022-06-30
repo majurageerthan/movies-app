@@ -1,8 +1,9 @@
-import React from 'react';
-import { View } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, ActivityIndicator } from 'react-native';
 import PropTypes from 'prop-types';
 import styles from './styles';
 import HomeTemplate from '../../templates/home';
+import { getMoviesList } from '../../../services/api/moviesApi';
 
 const x = {
   page: 1,
@@ -400,18 +401,60 @@ const x = {
 
 const data = x.results;
 
-const Title = () => (
-  <View style={{ flex: 1 }}>
-    <HomeTemplate
-      title={data.original_title}
-      movies={data}
-    />
-  </View>
-);
+const HomePage = () => {
+  const [pageNo, setPageNo] = useState(1);
+  const [loading, setLoading] = useState(false);
+  const [movies, setMovies] = useState([]);
 
-Title.propTypes = {
+  const updateMovieList = async () => {
+    setLoading(true);
+    const moviesList = await getMoviesList(pageNo);
+    const oldMovies = movies || [];
+    const newMovies = moviesList?.results || [];
+    const allMovies = [...oldMovies, ...newMovies];
+    setMovies(allMovies);
+    console.log(`movies: ${pageNo}`, allMovies);
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    console.log(`pageNo: ${pageNo}`);
+    updateMovieList();
+  }, [pageNo]);
+
+  const increasePageNo = () => {
+    setPageNo(pageNo + 1);
+  };
+
+  return (
+    <View style={{ flex: 1 }}>
+      <HomeTemplate
+        title={data.original_title}
+        movies={movies}
+        increasePageNo={increasePageNo}
+      />
+      {loading && (
+      <View style={{
+        position: 'absolute',
+        left: 0,
+        right: 0,
+        top: 0,
+        bottom: 0,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: '#F5FCFF88',
+      }}
+      >
+        <ActivityIndicator size="large" />
+      </View>
+      )}
+    </View>
+  );
+};
+
+HomePage.propTypes = {
   title: PropTypes.string,
   movies: PropTypes.arrayOf(PropTypes.string),
 };
 
-export default Title;
+export default HomePage;

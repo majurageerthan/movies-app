@@ -6,13 +6,14 @@ import {
 import styles from './styles';
 import MovieTile from '../../organisms/movieTile';
 
-const HomeTemplate = ({ title, movies }) => (
+const HomeTemplate = ({ title, movies, increasePageNo }) => (
 
   <SafeAreaView style={styles.container}>
     <FlatList
       data={movies}
       keyExtractor={(item) => item.id}
       ListFooterComponent={<View style={{ height: 20 }} />}
+      onEndReached={increasePageNo}
       renderItem={({ item, index, separators }) => (
         <MovieTile
           movie={item}
