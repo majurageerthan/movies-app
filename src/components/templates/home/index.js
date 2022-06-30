@@ -6,7 +6,9 @@ import {
 import styles from './styles';
 import MovieTile from '../../organisms/movieTile';
 
-const HomeTemplate = ({ title, movies, increasePageNo }) => (
+const HomeTemplate = ({
+  movies, increasePageNo, onPullToRefresh, isPullToRefreshing,
+}) => (
 
   <SafeAreaView style={styles.container}>
     <FlatList
@@ -14,6 +16,8 @@ const HomeTemplate = ({ title, movies, increasePageNo }) => (
       keyExtractor={(item) => item.id}
       ListFooterComponent={<View style={{ height: 20 }} />}
       onEndReached={increasePageNo}
+      onRefresh={() => onPullToRefresh()}
+      refreshing={isPullToRefreshing}
       renderItem={({ item, index, separators }) => (
         <MovieTile
           movie={item}
