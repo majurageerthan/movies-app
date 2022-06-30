@@ -54,4 +54,9 @@ export default StyleSheet.create({
     color: 'black',
   },
 
+  subTitleText: {
+    fontSize: 14,
+    fontWeight: 'bold',
+  },
+
 });

@@ -11,9 +11,14 @@ const HomeTemplate = ({ title, movies }) => (
   <SafeAreaView style={styles.container}>
     <FlatList
       data={movies}
-      renderItem={MovieTile}
       keyExtractor={(item) => item.id}
       ListFooterComponent={<View style={{ height: 20 }} />}
+      renderItem={({ item, index, separators }) => (
+        <MovieTile
+          movie={item}
+          index={index}
+        />
+      )}
     />
   </SafeAreaView>
 

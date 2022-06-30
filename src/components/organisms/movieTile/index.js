@@ -4,7 +4,7 @@ import {
 } from 'react-native';
 import styles from './styles';
 
-const MovieTile = ({ item }) => (
+const MovieTile = ({ movie, index }) => (
 
   <View style={{
     flexDirection: 'row',
@@ -24,7 +24,7 @@ const MovieTile = ({ item }) => (
   }}
   >
     <View style={{ flex: 2, backgroundColor: 'white' }}>
-      <Image source={{ uri: `https://image.tmdb.org/t/p/original${item.poster_path}` }} style={{ height: '90%' }} />
+      <Image source={{ uri: `https://image.tmdb.org/t/p/original${movie.poster_path}` }} style={{ height: '90%' }} />
     </View>
 
     <View style={{ flex: 3, backgroundColor: 'white', paddingHorizontal: 15 }}>
@@ -34,23 +34,41 @@ const MovieTile = ({ item }) => (
       }}
       >
         <Text style={styles.titleText}>
-          {item?.original_title}
+          {`#${index + 1} ${movie?.original_title}`}
         </Text>
-        <Text>{item?.title}</Text>
+        <Text style={styles.subTitleText}>
+          {`(${movie?.title})`}
+
+        </Text>
 
         <View style={{
           flexDirection: 'row',
           flex: 1,
           maxHeight: 20,
+          marginTop: 5,
+          marginBottom: 7,
         }}
         >
-          <Text style={{ paddingRight: 10 }}>
-            {item?.original_language}
+          <Text>{movie?.release_date}</Text>
+
+          <Text style={{ paddingRight: 1 }}>
+            {` (${movie?.original_language}) . `}
           </Text>
-          <Text>{item?.release_date}</Text>
+
+          <View style={{
+            borderColor: '#D3D3D3',
+            borderWidth: 1,
+            justifyContent: 'center',
+            padding: 1,
+          }}
+          >
+            <Text style={{ fontSize: 12 }}>
+              {movie?.adult ? 'R' : 'All'}
+            </Text>
+          </View>
         </View>
 
-        <Text numberOfLines={4}>{item?.overview}</Text>
+        <Text numberOfLines={4}>{movie?.overview}</Text>
       </View>
     </View>
 
