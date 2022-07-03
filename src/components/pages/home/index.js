@@ -1,18 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { View, ActivityIndicator, Text } from 'react-native';
-import { useNetInfo } from '@react-native-community/netinfo';
+import NetInfo, { useNetInfo } from '@react-native-community/netinfo';
 import { useSelector, useDispatch } from 'react-redux';
 import styles from './styles';
 import HomeTemplate from '../../templates/home';
 import { getMoviesList } from '../../../services/api/moviesApi';
 import { addToMovies, clearMovies, initMovies } from '../../../redux/movieSlice';
 import { savetMoviesToLocalStorage, getMoviesFromLocalStorage } from '../../../shared/storageHelper';
+import { showNoInternetToast } from '../../../shared/helpers';
 
 const HomePage = () => {
   const [pageNo, setPageNo] = useState(1);
+  const [localSavedMovies, setLocalSavedMovies] = useState([]);
   const [loading, setLoading] = useState(false);
   const [isPullToRefreshing, setIsPullToRefreshing] = useState(false);
-  // const [movies, setMovies] = useState([]);
   const movies = useSelector((state) => state.movies.value);
   const dispatch = useDispatch();
   const netInfo = useNetInfo();
@@ -21,39 +22,52 @@ const HomePage = () => {
   const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 
   const onPullToRefresh = async () => {
-    // if (netInfo.isConnected) {
+    const { isConnected, isInternetReachable } = await NetInfo.fetch();
+    console.log('NetState: ', { isConnected, isInternetReachable });
+
+    if (!isConnected && !isInternetReachable) {
+      console.log('Internet not connected, existing pull to refresh');
+      showNoInternetToast();
+      return;
+    }
+
     setIsPullToRefreshing(true);
-    // setMovies([]);
     dispatch(clearMovies());
     setPageNo(1);
     const moviesList = await getMoviesList(1);
     await delay(500);
-    // setMovies(moviesList?.results || []);
-
     dispatch(initMovies(moviesList?.results || []));
     setIsPullToRefreshing(false);
-    // }
   };
 
   const updateMovieList = async () => {
-    // if (netInfo.isConnected) {
+    const { isConnected, isInternetReachable } = await NetInfo.fetch();
+    console.log('NetState: ', { isConnected, isInternetReachable });
+
+    if (!movies?.length) {
+      const localMovies = await getMoviesFromLocalStorage();
+      setLocalSavedMovies(localMovies);
+    }
+
+    if (!isConnected && !isInternetReachable) {
+      console.log('Internet not connected, existing pull to refresh');
+      showNoInternetToast();
+      return;
+    }
+
     setLoading(true);
     const moviesList = await getMoviesList(pageNo);
     if (pageNo === 1) {
-      savetMoviesToLocalStorage(movies);
+      savetMoviesToLocalStorage(moviesList?.results);
     }
-
-    // const oldMovies = movies || [];
 
     if (moviesList?.results?.length) {
       const newMovies = moviesList?.results;
-      // const allMovies = [...oldMovies, ...newMovies];
       dispatch(addToMovies(newMovies));
       console.log(`movies: ${pageNo}`, newMovies);
     }
 
     setLoading(false);
-    // }
   };
 
   useEffect(() => {
@@ -76,7 +90,7 @@ const HomePage = () => {
       )}
 
       <HomeTemplate
-        movies={movies}
+        movies={(!movies?.length && !isPullToRefreshing) ? localSavedMovies : movies}
         increasePageNo={increasePageNo}
         onPullToRefresh={onPullToRefresh}
         isPullToRefreshing={isPullToRefreshing}
