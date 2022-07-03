@@ -31,5 +31,7 @@ module.exports = {
     'react/require-default-props': 'off',
     'import/prefer-default-export': 'off',
     'react/prop-types': 'off',
+    'no-param-reassign': ['error', { props: false }],
+    'max-len': ['error', { code: 150 }],
   },
 };

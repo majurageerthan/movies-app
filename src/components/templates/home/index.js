@@ -10,7 +10,7 @@ const HomeTemplate = ({
   <SafeAreaView style={styles.container}>
     <FlatList
       data={movies}
-      keyExtractor={(item) => item.id}
+      keyExtractor={(item, index) => item.id + index}
       ListFooterComponent={<View style={styles.listFooterComponent} />}
       onEndReached={increasePageNo}
       onRefresh={() => onPullToRefresh()}
