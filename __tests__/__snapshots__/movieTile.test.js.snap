@@ -1,0 +1,151 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "white",
+      "borderRadius": 15,
+      "elevation": 3,
+      "flex": 1,
+      "flexDirection": "row",
+      "marginHorizontal": 20,
+      "marginVertical": 10,
+      "maxHeight": 250,
+      "padding": 15,
+      "shadowColor": "black",
+      "shadowOffset": Object {
+        "height": 2,
+        "width": 0,
+      },
+      "shadowOpacity": 0.26,
+      "shadowRadius": 10,
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "backgroundColor": "white",
+        "flex": 2,
+      }
+    }
+  >
+    <Image
+      source={
+        Object {
+          "uri": "https://image.tmdb.org/t/p/original/saHP97rTPS5eLmrLQEcANmKrsFl.jpg",
+        }
+      }
+      style={
+        Object {
+          "height": "90%",
+        }
+      }
+    />
+  </View>
+  <View
+    style={
+      Object {
+        "backgroundColor": "white",
+        "flex": 3,
+        "paddingHorizontal": 15,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "flex": 1,
+          "flexDirection": "column",
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "color": "black",
+            "fontSize": 16,
+            "fontWeight": "bold",
+          }
+        }
+      >
+        #2 Forrest Gump
+      </Text>
+      <Text
+        style={
+          Object {
+            "color": "#808080",
+            "fontSize": 14,
+            "fontWeight": "bold",
+          }
+        }
+      >
+        (Forrest Gump)
+      </Text>
+      <View
+        style={
+          Object {
+            "flex": 1,
+            "flexDirection": "row",
+            "marginBottom": 7,
+            "marginTop": 5,
+            "maxHeight": 20,
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": "#808080",
+            }
+          }
+        >
+          1994-06-23
+        </Text>
+        <Text
+          style={
+            Object {
+              "color": "#808080",
+              "paddingRight": 1,
+            }
+          }
+        >
+           (en) . 
+        </Text>
+        <View
+          style={
+            Object {
+              "borderColor": "#D3D3D3",
+              "borderWidth": 1,
+              "justifyContent": "center",
+              "padding": 1,
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "color": "#808080",
+                "fontSize": 12,
+              }
+            }
+          >
+            All
+          </Text>
+        </View>
+      </View>
+      <Text
+        numberOfLines={4}
+        style={
+          Object {
+            "color": "#808080",
+          }
+        }
+      >
+        A man with a low IQ has accomplished great things in his life and been present during significant historic events—in each case, far exceeding what anyone imagined he could do. But despite all he has achieved, his one true love eludes him.
+      </Text>
+    </View>
+  </View>
+</View>
+`;

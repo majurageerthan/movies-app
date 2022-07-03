@@ -3,6 +3,7 @@ module.exports = {
     browser: true,
     es2021: true,
     'react-native/react-native': true,
+    jest: true,
   },
   extends: [
     'plugin:react/recommended',
@@ -31,5 +32,7 @@ module.exports = {
     'react/require-default-props': 'off',
     'import/prefer-default-export': 'off',
     'react/prop-types': 'off',
+    'no-param-reassign': ['error', { props: false }],
+    'max-len': ['error', { code: 150 }],
   },
 };
