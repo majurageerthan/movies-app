@@ -7,6 +7,7 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
+    "jestCodeChange": "npm test -- -u",
     "lint": "eslint .",
     "cleanAndroid": "cd android && .\\gradlew clean && cd ../",
     "buildAndroidRelease": "cd android && .\\gradlew assembleRelease"
